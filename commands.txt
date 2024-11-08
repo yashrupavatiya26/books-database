@@ -1,0 +1,10 @@
+sudo yum install -y nodejs npm
+sudo yum install aws-cli -y
+aws configure
+"aws data"
+access key id
+secret key id
+ap-south-1
+"aws data"
+npm install
+node index.js

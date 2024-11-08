@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Book_Store</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <form method="post" action="/updateData">
+    <input type="hidden" name="id" value="<%= editR.id %>"/>
+    <div class="form-group">
+        <label for="Bname">Book Name:</label>
+        <input type="text" value="<%= editR.Bname %>" class="form-control"  placeholder="Enter name" name="Bname">
+      </div>
+    <div class="form-group">
+      <label for="Bprice">Book Price:</label>
+      <input type="text" value="<%= editR.Bprice %>" class="form-control"  placeholder="Enter email" name="Bprice">
+    </div>
+    <div class="form-group">
+      <label for="Bauthor">Book Author :</label>
+      <input type="text" value="<%= editR.Bauthor %>" class="form-control"  placeholder="Enter password" name="Bauthor">
+    </div>
+    <div class="form-group">
+      <label for="pages">Pages :</label>
+      <select name="pages">
+        <option value="">select pages</option>
+
+        <%
+            let pages = ["100","200","300","400"]; 
+            for(let i in pages) {
+        %>
+        <option <% if(pages[i] == editR.pages) { %> selected <% } %> value="<%= pages[i] %>"><%= pages[i] %></option>
+        <% } %>
+
+    </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+  </form>
+  
+</div>
+<a href="/view">View Record</a>
+
+</body>
+</html>
