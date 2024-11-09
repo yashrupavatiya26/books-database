@@ -30,7 +30,7 @@ cache:
 # Add S3 Bucket Deployment Step
 environment_variables:
   plaintext:
-    S3_BUCKET_NAME: codebuild-cicd-monitoring/codebuild # Replace with your actual S3 bucket name
+    S3_BUCKET_NAME: codebuild-cicd-monitoring/codebuild/ # Replace with your actual S3 bucket name
 
 reports:
   deployment_report:
