@@ -8,3 +8,16 @@ ap-south-1
 "aws data"
 npm install
 node index.js
+
+#!/bin/bash
+sudo yum update -y
+sudo yum install -y unzip wget
+curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash -
+sudo yum install -y nodejs
+cd /home/ec2-user
+sudo yum install -y aws-cli
+aws s3 cp s3://codebuild-cicd-monitoring/codebuild
+unzip build.zip -d app
+cd app
+npm install
+node index.js 
