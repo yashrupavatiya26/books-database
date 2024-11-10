@@ -1,8 +1,8 @@
 const express = require('express');
 const path = require('path');
-const dynamoDB = require('./dynamodb'); // Use the new DynamoDB file
+const dynamoDB = require('./config/dynamodb'); // Use the new DynamoDB file
 
-const port = 80;
+const port = 8000;
 const app = express();
 
 app.set('view engine', 'ejs');
