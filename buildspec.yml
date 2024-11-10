@@ -30,7 +30,7 @@ cache:
 # Add S3 Bucket Deployment Step
 environment_variables:
   plaintext:
-    S3_BUCKET_NAME: codebuild-cicd-monitoring/codebuild/build.zip # Replace with your actual S3 bucket name
+    S3_BUCKET_NAME: codebuild-cicd-monitoring/build.zip # Replace with your actual S3 bucket name
 
 reports:
   deployment_report:
@@ -42,5 +42,5 @@ phases:
   post_build:
     commands:
       - echo "Uploading the zip file to S3 bucket..."
-      - aws s3 cp build.zip s3://codebuild-cicd-monitoring/codebuild/build.zip # Replace with your S3 bucket path
+      - aws s3 cp build.zip s3://codebuild-cicd-monitoring/build.zip # Replace with your S3 bucket path
       - echo "Upload completed successfully."
