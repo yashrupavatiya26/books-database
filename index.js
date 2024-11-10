@@ -10,7 +10,7 @@ app.set('views', path.join(__dirname, "views"));
 app.use(express.urlencoded());
 
 // Define the DynamoDB Table
-const tableName = 'anything'; // Replace with your DynamoDB table name
+const tableName = 'books-dynamodb-cicd'; // Replace with your DynamoDB table name
 
 // Home route
 app.get('/', async (req, res) => {
@@ -43,7 +43,7 @@ app.post('/insertdata', async (req, res) => {
 
     // Parameters for the put operation
     const params = {
-        TableName: 'anything', // Replace with your DynamoDB table name
+        TableName: 'books-dynamodb-cicd', // Replace with your DynamoDB table name
         Item: item
     };
 
@@ -61,7 +61,7 @@ app.post('/insertdata', async (req, res) => {
 app.get('/view', async (req, res) => {
     // Parameters for the scan operation
     const params = {
-        TableName: 'anything' // Replace with your DynamoDB table name
+        TableName: 'books-dynamodb-cicd' // Replace with your DynamoDB table name
     };
 
     try {
@@ -84,7 +84,7 @@ app.get('/deletedata/:id', async (req, res) => {
     let deleteid = parseInt(req.params.id); // Assuming `id` is a number
 
     const params = {
-        TableName: 'anything', // Replace with your table name
+        TableName: 'books-dynamodb-cicd', // Replace with your table name
         Key: { id: deleteid } // Primary key to identify the item
     };
 
@@ -102,7 +102,7 @@ app.get('/editdata/:id', async (req, res) => {
     let editid = parseInt(req.params.id); // Assuming `id` is a number
 
     const params = {
-        TableName: 'anything', // Replace with your table name
+        TableName: 'books-dynamodb-cicd', // Replace with your table name
         Key: { id: editid } // Primary key to identify the item
     };
 
@@ -126,7 +126,7 @@ app.post('/updateData', async (req, res) => {
     let id = parseInt(req.body.id); // Assuming `id` is a number
 
     const params = {
-        TableName: 'anything', // Replace with your table name
+        TableName: 'books-dynamodb-cicd', // Replace with your table name
         Key: { id: id }, // Primary key to identify the item
         UpdateExpression: "set Bname = :bname, Bprice = :bprice, Bauthor = :bauthor, pages = :pages",
         ExpressionAttributeValues: {
