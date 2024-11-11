@@ -3,19 +3,23 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 23.1.0 # Use the desired Node.js version
+      nodejs: 18.x # Use a valid Node.js version
     commands:
       - echo "Installing dependencies..."
       - npm install # Install dependencies defined in package.json
+
   build:
     commands:
       - echo "Building the application..."
       - npm run build || echo "No build script found, skipping build step." # Run the build script if available
+
   post_build:
     commands:
       - echo "Zipping the build artifacts..."
       - zip -r build.zip . # Create a zip file of the entire directory
-      - echo "Build artifacts zipped successfully."
+      - echo "Uploading the zip file to S3 bucket..."
+      - aws s3 cp build.zip s3://codebuild-cicd-monitoring/ec2_bucket/build.zip # Replace with your S3 bucket path
+      - echo "Upload completed successfully."
 
 artifacts:
   files:
@@ -26,21 +30,3 @@ artifacts:
 cache:
   paths:
     - node_modules/**/* # Cache Node.js modules to speed up future builds
-
-# Add S3 Bucket Deployment Step
-environment_variables:
-  plaintext:
-    S3_BUCKET_NAME: codebuild-cicd-monitoring # Replace with your actual S3 bucket name
-
-reports:
-  deployment_report:
-    files:
-      - build.zip
-    base-directory: .
-
-phases:
-  post_build:
-    commands:
-      - echo "Uploading the zip file to S3 bucket..."
-      - aws s3 cp build.zip s3://codebuild-cicd-monitoring/build.zip # Replace with your S3 bucket path
-      - echo "Upload completed successfully."

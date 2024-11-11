@@ -1,12 +1,15 @@
 #!/bin/bash
 set -e
+echo "Starting installation of dependencies..."
 sudo apt update -y
-sudo apt install unzip -y nodejs npm awscli
-sudo apt install nodejs -y
-sudo apt install npm -y
-sudo apt install awscli -y
-aws s3 cp s3://codebuild-cicd-monitoring/build.zip /home/ubuntu/build.zip
+sudo apt install -y unzip nodejs npm awscli
+echo "Downloading build artifact from S3..."
+S3_BUCKET="codebuild-cicd-monitoring"
+S3_OBJECT="ec2_bucket/build.zip"
+aws s3 cp s3://$S3_BUCKET/$S3_OBJECT /home/ubuntu/build.zip
+echo "Extracting build artifact..."
 unzip -o /home/ubuntu/build.zip -d /home/ubuntu/build
+echo "Installing Node.js dependencies..."
 cd /home/ubuntu/build
 npm install
-npm install aws-sdk
+echo "Dependencies installed successfully!"
