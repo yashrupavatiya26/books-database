@@ -17,6 +17,9 @@ sudo ./aws/install
 echo "Verifying AWS CLI installation..."
 aws --version
 
+echo "Removing old files from build directory..."
+rm -rf /home/ubuntu/build/*
+
 echo "Downloading build artifact from S3..."
 S3_BUCKET="codebuild-cicd-monitoring"
 S3_OBJECT="build.zip"
