@@ -18,7 +18,7 @@ phases:
       - echo "Zipping the build artifacts..."
       - zip -r build.zip . # Create a zip file of the entire directory
       - echo "Uploading build.zip to S3"
-      - aws s3 cp build.zip s3://codebuild-cicd-monitoring/ec2_bucket/build.zip || echo "Failed to upload build.zip" # Replace with your S3 bucket path
+      - aws s3 cp build.zip s3://codebuild-cicd-monitoring/build.zip || echo "Failed to upload build.zip" # Replace with your S3 bucket path
       - echo "Upload completed successfully."
 
 artifacts:
