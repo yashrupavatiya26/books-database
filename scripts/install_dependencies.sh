@@ -1,8 +1,16 @@
 #!/bin/bash
-set -e
+set -e  
 echo "Starting installation of dependencies..."
+echo "Updating package list..."
 sudo apt update -y
-sudo apt install -y unzip nodejs npm awscli
+echo "Installing necessary dependencies..."
+sudo apt install -y unzip nodejs npm curl
+echo "Installing AWS CLI..."
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+echo "Verifying AWS CLI installation..."
+aws --version
 echo "Downloading build artifact from S3..."
 S3_BUCKET="codebuild-cicd-monitoring"
 S3_OBJECT="build.zip"
